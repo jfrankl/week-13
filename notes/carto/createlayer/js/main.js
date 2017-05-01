@@ -31,6 +31,10 @@ var districts = cartodb.createLayer(map, {
   .on('done', function(layer) {
     // Set interactivity
     layer.setInteraction(true);
+    cdb.vis.Vis.addInfowindow(map, layer.getSubLayer(0), ['district_number'], {
+      infowindowTemplate: $('#infowindow_template').html(),
+      templateType: 'mustache'
+    })
     // Set up map interaction event
     layer.on('featureClick',function(e, latlng, pos, data) {
       console.log(data);
