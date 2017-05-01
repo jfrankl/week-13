@@ -16,6 +16,19 @@ var cartoUserName = 'jefffrankl';
 
 var myLayer;
 
+var infowindowTemplate ='<div class="cartodb-popup v2"> \
+  <div class="infowindow-custom"> \
+    <a href="#close" class="cartodb-popup-close-button close">x</a> \
+    <div class="cartodb-popup-content-wrapper"> \
+      <div class="cartodb-popup-content"> \
+        <h2>PA-{{content.data.district_number}}</h2> \
+        <p>This district is located in Pennsylvania. It\'s definitely a congressional district.</p> \
+      </div> \
+    </div> \
+  </div> \
+  <div class="cartodb-popup-tip-container"></div> \
+</div>';
+
 var districts = cartodb.createLayer(map, {
   user_name: cartoUserName,
   type: 'cartodb',
@@ -32,7 +45,7 @@ var districts = cartodb.createLayer(map, {
     // Set interactivity
     layer.setInteraction(true);
     cdb.vis.Vis.addInfowindow(map, layer.getSubLayer(0), ['district_number'], {
-      infowindowTemplate: $('#infowindow_template').html(),
+      infowindowTemplate: infowindowTemplate,
       templateType: 'mustache'
     })
     // Set up map interaction event
