@@ -40,6 +40,9 @@ var districts = cartodb.createLayer(map, {
       interactivity: ['district_number'], // Define properties you want to be available on interaction
    }
   ]
+}, 
+{
+  https: true
 }).addTo(map)
   .on('done', function(layer) {
     // Set interactivity
